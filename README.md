@@ -18,8 +18,10 @@
 ### Второй этап(запуск программы)
 -Запустить MySQL, PostgreSQL, NodeJS командой:
 docker-compose up
--Запустить джарник
-java -jar ./artifacts/aqa-shop.jar -port=8080
+-Запустить джарник база MySQL
+java -jar ./artifacts/aqa-shop.jar -port=8080 \ -url=jdbc:mysql://localhost:3306/app \ -user=app \ -password=pass
+-Запустить джарник база PostgreSQL
+java -jar ./artifacts/aqa-shop.jar -port=8080 -url=jdbc:postgresql://localhost:5432/app -user=app -password=pass
 -Открыть сервис в браузере по адресу http://localhost:8080/ (приложение запущено)
 
 ### Третий этап(запуск тестов) ?
