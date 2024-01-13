@@ -45,13 +45,6 @@ public class DataHelper {
 
 
 
-    //пустое поле "CVV"
-    public static Card getEmptyCVVField() {
-        return new Card("4444444444444441", "01", "24", "Anna Kochergina", "");
-    }
-
-
-
     //"Месяц" метод сдвига года
     public static String getShiftedMonth(){
         int shift = (int) (Math.random() * 10);
@@ -144,6 +137,44 @@ public class DataHelper {
         Faker faker = new Faker(new Locale("ru"));
         String holder = faker.name().firstName() + " " + faker.name().lastName();
         return new Card("4444444444444441", "01", "24", holder, "555");
+    }
+
+    //"Владелец карты" цифры
+    public static Card getCardHolderNumbers() {
+        Faker faker = new Faker();
+        String holder = faker.number().digits(7) + " " + faker.number().digits(7);
+        return new Card("4444444444444441", "01", "24", holder, "555");
+    }
+
+    //"Владелец карты" спецсимволы, кроме пробела и дефиса
+    public static Card getCardSpecialSymbols() {
+        return new Card("4444444444444441", "01", "24", "*&$%", "555");
+    }
+
+
+
+    //"CVV" пустое
+    public static Card getEmptyCVVField() {
+        return new Card("4444444444444441", "01", "24", "Anna Kochergina", "");
+    }
+
+    //"CVV" 000
+    public static Card getEmptyCVV000() {
+        return new Card("4444444444444441", "01", "24", "Anna Kochergina", "000");
+    }
+
+    //"CVV" две цифры
+    public static Card getEmptyCVV2Symbol() {
+        Faker faker = new Faker();
+        String cvv = faker.number().digits(2);
+        return new Card("4444444444444441", "01", "24", "Anna Kochergina", cvv);
+    }
+
+    //"CVV" одна цифра
+    public static Card getEmptyCVV1Symbol() {
+        Faker faker = new Faker();
+        String cvv = faker.number().digit();
+        return new Card("4444444444444441", "01", "24", "Anna Kochergina", cvv);
     }
 
 
