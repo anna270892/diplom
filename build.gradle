@@ -7,10 +7,12 @@ group 'org.example'
 version '1.0-SNAPSHOT'
 
 // кодировка файлов (если используете русский язык в файлах)
+sourceCompatibility = 11
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -20,17 +22,25 @@ allure{
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
     testImplementation 'io.qameta.allure:allure-selenide:2.21.0'
-    testImplementation 'mysql:mysql-connector-java:8.0.22'
+    testImplementation 'mysql:mysql-connector-java:8.0.30'
     testImplementation 'org.postgresql:postgresql:42.2.18'
-    testImplementation 'com.codeborne:selenide:5.16.2'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.1.0'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
-    testImplementation (group: 'org.projectlombok', name: 'lombok', version: '1.18.12')
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
     testImplementation 'org.postgresql:postgresql:42.2.18'
+    testImplementation 'com.codeborne:selenide:6.17.2'
+
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 }
+
 
 test {
     useJUnitPlatform()

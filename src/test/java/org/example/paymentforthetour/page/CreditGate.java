@@ -4,6 +4,9 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.example.paymentforthetour.data.MyCard;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -41,28 +44,28 @@ public class CreditGate {
     }
 
     public void waitNotificationApproved() {
-        approvedOperation.waitUntil(visible, 12000);
+        approvedOperation.shouldBe(visible, Duration.ofSeconds(15));
         cancelField.click();
     }
 
     public void waitNotificationFailure() {
-        failureOperation.waitUntil(visible, 12000);
+        failureOperation.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void waitNotificationWrongFormat() {
-        wrongFormatError.waitUntil(visible, 12000);
+        wrongFormatError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void waitNotificationExpirationDateError() {
-        cardExpirationDateError.waitUntil(visible, 12000);
+        cardExpirationDateError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void waitNotificationExpiredError() {
-        cardExpiredError.waitUntil(visible, 12000);
+        cardExpiredError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void waitNotificationWrongFormat4Fields() {
-        wrongFormat4Error.shouldHaveSize(4);
-        requiredFieldError.waitUntil(visible, 12000);
+        wrongFormat4Error.shouldHave(size(4));
+        requiredFieldError.shouldBe(visible, Duration.ofSeconds(15));
     }
 }

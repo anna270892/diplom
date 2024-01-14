@@ -1,6 +1,9 @@
 package org.example.paymentforthetour.test;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+
+
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
 import org.example.paymentforthetour.data.DataHelper;
@@ -33,6 +36,7 @@ public class BuyGateTest {
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
     }
+
 
     @Test
     void buyPositiveAllFieldValidApproved() {
