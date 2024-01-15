@@ -23,7 +23,7 @@ allure{
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
     testImplementation 'io.qameta.allure:allure-selenide:2.21.0'
     testImplementation 'mysql:mysql-connector-java:8.0.30'
@@ -31,9 +31,10 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.1.0'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
+    testImplementation 'org.postgresql:postgresql:42.2.18'
     testImplementation 'com.codeborne:selenide:6.17.2'
-    testImplementation 'com.codeborne:selenide:5.3.1'
-    testImplementation 'org.slf4j:slf4j-simple:2.0.5'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.0'
+    testImplementation 'com.google.code.gson:gson:2.8.6'
 
 
     compileOnly 'org.projectlombok:lombok:1.18.30'

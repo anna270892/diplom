@@ -16,13 +16,13 @@
 -Открыть проект в IntelliJ IDEA
 
 ### Второй этап(запуск программы)
--Запустить MySQL, PostgreSQL, NodeJS командой:
-docker-compose up
--Запустить джарник база MySQL
-java -jar ./artifacts/aqa-shop.jar -port=8080 \ -url=jdbc:mysql://localhost:3306/app \ -user=app \ -password=pass
+-Запустить MySQL, PostgreSQL, NodeJS командой:  
+docker-compose up  
+-Запустить джарник база MySQL    
+java -jar -"Dspring.datasource.url=jdbc:mysql://localhost:3306/app" artifacts/aqa-shop.jar  
 -Запустить джарник база PostgreSQL
-java -jar ./artifacts/aqa-shop.jar -port=8080 -url=jdbc:postgresql://localhost:5432/app -user=app -password=pass
--Открыть сервис в браузере по адресу http://localhost:8080/ (приложение запущено)
+java -jar -"Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" artifacts/aqa-shop.jar  
+-Открыть сервис в браузере по адресу http://localhost:8080/ (приложение запущено)  
 
 ### Третий этап(запуск тестов) ?
 
