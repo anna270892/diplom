@@ -24,6 +24,8 @@ java -jar -"Dspring.datasource.url=jdbc:mysql://localhost:3306/app" artifacts/aq
 java -jar -"Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" artifacts/aqa-shop.jar  
 -Открыть сервис в браузере по адресу http://localhost:8080/ (приложение запущено)  
 
-### Третий этап(запуск тестов) ?
+### Третий этап(запуск тестов)  
+-Запустить тесты на базе MySQL  
+./gradlew clean test -"Ddb.url=jdbc:mysql://localhost:3306/app"
 
 ## Лицензии ?

@@ -13,7 +13,6 @@ compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 repositories {
-    jcenter()
     mavenCentral()
 }
 
@@ -34,7 +33,7 @@ dependencies {
     testImplementation 'org.postgresql:postgresql:42.2.18'
     testImplementation 'com.codeborne:selenide:6.17.2'
     testImplementation 'org.slf4j:slf4j-simple:2.0.0'
-    testImplementation 'com.google.code.gson:gson:2.8.6'
+    testImplementation 'com.google.code.gson:gson:2.10.1'
 
 
     compileOnly 'org.projectlombok:lombok:1.18.30'
