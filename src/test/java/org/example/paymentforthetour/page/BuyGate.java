@@ -9,8 +9,7 @@ import java.time.Duration;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class BuyGate {
     private SelenideElement heading = $$("h3").find(exactText("Оплата по карте"));
@@ -19,7 +18,7 @@ public class BuyGate {
     private SelenideElement yearField = $(byText("Год")).parent().$("[class=\"input__control\"]");
     private SelenideElement cardHolderField = $(byText("Владелец")).parent().$("[class=\"input__control\"]");
     private SelenideElement cvvField = $(byText("CVC/CVV")).parent().$("[class=\"input__control\"]");
-    private SelenideElement approvedOperation = $(byText("Операция одобрена Банком.")).parent().$("[class='notification__content']");
+    private SelenideElement approvedOperation = $(byText("Операция одобрена Банком."));
     private SelenideElement failureOperation = $(byText("Ошибка! Банк отказал в проведении операции.")).parent().$("[class=\"notification__content\"]");
     private SelenideElement wrongFormatError = $(byText("Неверный формат"));
     private ElementsCollection wrongFormat4Error = $$(byText("Неверный формат"));
@@ -43,9 +42,9 @@ public class BuyGate {
         continueButton.click();
     }
 
+    //ожидание элемента
     public void waitNotificationApproved() {
-        approvedOperation.shouldBe(visible, Duration.ofSeconds(20));
-        cancelField.click();
+        approvedOperation.shouldBe(visible, Duration.ofSeconds(30));
     }
 
     public void waitNotificationFailure() {

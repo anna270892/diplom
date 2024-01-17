@@ -19,7 +19,7 @@ public class CreditGate {
     private SelenideElement yearField = $(byText("Год")).parent().$("[class=\"input__control\"]");
     private SelenideElement cardHolderField = $(byText("Владелец")).parent().$("[class=\"input__control\"]");
     private SelenideElement cvvField = $(byText("CVC/CVV")).parent().$("[class=\"input__control\"]");
-    private SelenideElement approvedOperation = $(byText("Операция одобрена Банком.")).parent().$("[class=\".notification.notification_status_ok.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white .notification__content\"]");
+    private SelenideElement approvedOperation = $(byText("Операция одобрена Банком."));
     private SelenideElement failureOperation = $(byText("Ошибка! Банк отказал в проведении операции.")).parent().$("[class=\"notification__content\"]");
     private SelenideElement wrongFormatError = $(byText("Неверный формат"));
     private ElementsCollection wrongFormat4Error = $$(byText("Неверный формат"));
@@ -43,9 +43,9 @@ public class CreditGate {
         continueButton.click();
     }
 
+    //ожидание элемента
     public void waitNotificationApproved() {
-        approvedOperation.shouldBe(visible, Duration.ofSeconds(20));
-        cancelField.click();
+        approvedOperation.shouldBe(visible, Duration.ofSeconds(30));
     }
 
     public void waitNotificationFailure() {

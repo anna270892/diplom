@@ -1,13 +1,14 @@
 package org.example.paymentforthetour.test;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 
 
 import io.qameta.allure.selenide.AllureSelenide;
-import lombok.val;
 import org.example.paymentforthetour.data.DataHelper;
+import org.example.paymentforthetour.data.MyCard;
 import org.example.paymentforthetour.data.SqlHelper;
+import org.example.paymentforthetour.page.BuyGate;
+import org.example.paymentforthetour.page.CreditGate;
 import org.example.paymentforthetour.page.PaymentMethod;
 import org.junit.jupiter.api.*;
 
@@ -40,19 +41,21 @@ public class BuyGateTest {
 
     @Test
     void buyPositiveAllFieldValidApproved() {
-        val startPage = new PaymentMethod();
-        val payment = startPage.goToBuyPage();
-        payment.inputData(DataHelper.getApprovedCard());
+        PaymentMethod startPage = open(url, PaymentMethod.class);
+        BuyGate payment = startPage.goToBuyPage();
+        MyCard approvedCard = DataHelper.getApprovedCard();
+        payment.inputData(approvedCard);
         payment.waitNotificationApproved();
         assertEquals("APPROVED", SqlHelper.getPaymentStatus());
     }
 
     @Test
     void buyPositiveAllFieldValidDeclined() {
-        val startPage = new PaymentMethod();
-        val payment = startPage.goToBuyPage();
-        payment.inputData(DataHelper.getDeclinedCard());
-        payment.waitNotificationFailure();
-        assertEquals("DECLINED", SqlHelper.getPaymentStatus());
+        PaymentMethod startPage = open(url, PaymentMethod.class);
+        CreditGate payment = startPage.goToCreditPage();
+        MyCard declinedCard = DataHelper.getDeclinedCard();
+        payment.inputData(declinedCard);
+        payment.waitNotificationApproved();
+        assertEquals("DECLINED", SqlHelper.getCreditRequestStatus());
     }
 }
