@@ -45,7 +45,7 @@ public class CreditGate {
 
     //ожидание элемента
     public void waitNotificationApproved() {
-        approvedOperation.shouldBe(visible, Duration.ofSeconds(30));
+        approvedOperation.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void waitNotificationFailure() {

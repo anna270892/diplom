@@ -16,11 +16,13 @@ public class PaymentMethod {
         heading.shouldBe(visible);
     }
 
+    //кнопка "Купить"
     public BuyGate goToBuyPage() {
         buyButton.click();
         return new BuyGate();
     }
 
+    //кнопка "Купить в кредит"
     public CreditGate goToCreditPage() {
         creditButton.click();
         return new CreditGate();

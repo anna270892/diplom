@@ -24,6 +24,10 @@ public class DataHelper {
         return new MyCard("", "", "", "", "");
     }
 
+    //"Номер карты" недействительный
+    public static MyCard getNumberInvalidCard() {
+        return new MyCard("4444 4444 4444 4445", "01", "24", "Anna Kochergina", "555");
+    }
 
     //"Номер карты" пустое
     public static MyCard getEmptyCardNumberField() {
@@ -37,17 +41,8 @@ public class DataHelper {
         return new MyCard(number, "01", "24", "Anna Kochergina", "555");
     }
 
-    //"Номер карты" недействительный
-    public static MyCard getNumberInvalidCard() {
-        return new MyCard("4444 4444 4444 4445", "01", "24", "Anna Kochergina", "555");
-    }
 
 
-    //"Месяц" метод сдвига года
-    public static String getShiftedMonth() {
-        int shift = (int) (Math.random() * 10);
-        return LocalDate.now().plusMonths(shift).format(DateTimeFormatter.ofPattern("MM"));
-    }
 
     //"Месяц" пустое
     public static MyCard getEmptyMonthField() {

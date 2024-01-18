@@ -18,9 +18,9 @@ public class BuyGate {
     private SelenideElement yearField = $(byText("Год")).parent().$("[class=\"input__control\"]");
     private SelenideElement cardHolderField = $(byText("Владелец")).parent().$("[class=\"input__control\"]");
     private SelenideElement cvvField = $(byText("CVC/CVV")).parent().$("[class=\"input__control\"]");
-    private SelenideElement approvedOperation = $(byText("Операция одобрена Банком."));
+    private SelenideElement approvedOperation = $(byText("Операция одобрена Банком.")); //+
     private SelenideElement failureOperation = $(byText("Ошибка! Банк отказал в проведении операции.")).parent().$("[class=\"notification__content\"]");
-    private SelenideElement wrongFormatError = $(byText("Неверный формат"));
+    private SelenideElement wrongFormatError = $(byText("Неверный формат")); //+
     private ElementsCollection wrongFormat4Error = $$(byText("Неверный формат"));
     private SelenideElement cardExpirationDateError = $(byText("Неверно указан срок действия карты"));
     private SelenideElement cardExpiredError = $(byText("Истёк срок действия карты"));
@@ -44,7 +44,12 @@ public class BuyGate {
 
     //ожидание элемента
     public void waitNotificationApproved() {
-        approvedOperation.shouldBe(visible, Duration.ofSeconds(30));
+        approvedOperation.shouldBe(visible, Duration.ofSeconds(15));
+    }
+
+    //ожидание элемента "Неверный формат"
+    public void errorWaitingInvalidFormat() {
+        wrongFormatError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void waitNotificationFailure() {
