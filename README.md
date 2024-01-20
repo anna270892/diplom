@@ -33,10 +33,14 @@
 **http://localhost:8080/** (приложение запущено)  
 
 ### Третий этап(запуск тестов)  
--Запустить тесты на базе MySQL  
-./gradlew clean test -"Ddb.url=jdbc:mysql://localhost:3306/app"  
+-Запустить тесты на базе MySQL    
 
--Запустить тесты на базе PostgreSQL  
-./gradlew clean test -"Ddb.url=jdbc:postgresql://localhost:5432/app"  
+**./gradlew clean test -"Ddb.url=jdbc:mysql://localhost:3306/app"**    
 
-## Лицензии ?
+-Запустить тесты на базе PostgreSQL      
+
+**./gradlew clean test -"Ddb.url=jdbc:postgresql://localhost:5432/app"**      
+
+-Открыть отчёт allure, в новой вкладке терминала ввести команду:  
+
+**./gradlew allureServe**  

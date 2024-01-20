@@ -38,6 +38,7 @@ public class BuyGateTest {
         SelenideLogger.removeListener("allure");
     }
 
+
     //Позитивные кейсы:
     //1.Валидная покупка кнопкой «Купить» со статусом APPROVED
     @Test
@@ -69,6 +70,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCard();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -80,6 +82,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getNumberInvalidCard();
         payment.inputData(approvedCard);
+        payment.errorBankRefusal();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -91,6 +94,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCardNumberField();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -102,6 +106,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getNumberCard15Symbols();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -113,17 +118,19 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyMonthField();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
 
-    //11.Оплата картой с просроченным месяцем (форма по кнопке "Купить")
+    //!невозможно сделать просроченный месяц в 24 году! 11.Оплата картой с просроченным месяцем (форма по кнопке "Купить")
     @Test
     void cardWithThePastMonthField() {
         PaymentMethod startPage = open(url, PaymentMethod.class);
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardWithThePastMonth();
         payment.inputData(approvedCard);
+        payment.errorCardHasExpired();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -135,6 +142,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardMonthOver00();
         payment.inputData(approvedCard);
+        payment.errorTheCardExpirationDateIsIncorrect();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -146,6 +154,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardMonth1Symbol();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -157,6 +166,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardMonthOver12();
         payment.inputData(approvedCard);
+        payment.errorTheCardExpirationDateIsIncorrect();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -168,6 +178,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyYearField();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -179,6 +190,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getOverdueYear();
         payment.inputData(approvedCard);
+        payment.errorCardHasExpired();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -190,6 +202,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardYearOverThisYearOn6();
         payment.inputData(approvedCard);
+        payment.errorTheCardExpirationDateIsIncorrect();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -201,6 +214,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardYear1Symbol();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -212,6 +226,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardYearOver00();
         payment.inputData(approvedCard);
+        payment.errorCardHasExpired();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -223,72 +238,79 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCardOwnerField();
         payment.inputData(approvedCard);
+        payment.errorRequiredField();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
 
-    //31.Оплата картой с не валидным владельцем карты(из одного слова, например только имя) (форма по кнопке "Купить")
+    //+БАГ 31.Оплата картой с не валидным владельцем карты(из одного слова, например только имя) (форма по кнопке "Купить")
     @Test
     void cardHolder1WordField() {
         PaymentMethod startPage = open(url, PaymentMethod.class);
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardHolder1Word();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
 
-    //33.Оплата картой с не валидным владельцем карты(русские буквы) (форма по кнопке "Купить")
+    //+БАГ 33.Оплата картой с не валидным владельцем карты(русские буквы) (форма по кнопке "Купить")
     @Test
     void cardHolderRussianLettersField() {
         PaymentMethod startPage = open(url, PaymentMethod.class);
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardHolderRussianLetters();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
 
-    //35.Оплата картой с не валидным владельцем карты(цифры) (форма по кнопке "Купить")
+    //+БАГ 35.Оплата картой с не валидным владельцем карты(цифры) (форма по кнопке "Купить")
     @Test
     void cardHolderNumbersField() {
         PaymentMethod startPage = open(url, PaymentMethod.class);
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardHolderNumbers();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
 
-    //37.Оплата картой с не валидным владельцем карты(спецсимволы, кроме пробела и дефиса) (форма по кнопке "Купить")
+    //+БАГ 37.Оплата картой с не валидным владельцем карты(спецсимволы, кроме пробела и дефиса) (форма по кнопке "Купить")
     @Test
     void cardSpecialSymbolsField() {
         PaymentMethod startPage = open(url, PaymentMethod.class);
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardSpecialSymbols();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
 
-    //39.Оплата картой с пустым CVV (форма по кнопке "Купить")
+    //+БАГ ошибкой подсв и поле "Владелец карты" 39.Оплата картой с пустым CVV (форма по кнопке "Купить")
     @Test
-    void emptyCVVFieldField() {
+    void emptyCVVField() {
         PaymentMethod startPage = open(url, PaymentMethod.class);
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCVVField();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
 
-    //41.Оплата картой с не валидным CVV три ноля(форма по кнопке "Купить")
+    //+БАГ пропускает с нулями 41.Оплата картой с не валидным CVV три ноля(форма по кнопке "Купить")
     @Test
     void emptyCVV000Field() {
         PaymentMethod startPage = open(url, PaymentMethod.class);
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCVV000();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -300,6 +322,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCVV2Symbol();
         payment.inputData(approvedCard);
+        payment.errorWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 

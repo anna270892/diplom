@@ -1,34 +1,29 @@
 package org.example.paymentforthetour.page;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.example.paymentforthetour.data.MyCard;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class CreditGate {
-    private SelenideElement heading = $$("h3").find(exactText("Кредит по данным карты"));
-    private SelenideElement cardNumberField = $(byText("Номер карты")).parent().$("[class=\"input__control\"]");
-    private SelenideElement monthField = $(byText("Месяц")).parent().$("[class=\"input__control\"]");
-    private SelenideElement yearField = $(byText("Год")).parent().$("[class=\"input__control\"]");
-    private SelenideElement cardHolderField = $(byText("Владелец")).parent().$("[class=\"input__control\"]");
-    private SelenideElement cvvField = $(byText("CVC/CVV")).parent().$("[class=\"input__control\"]");
-    private SelenideElement approvedOperation = $(byText("Операция одобрена Банком."));
-    private SelenideElement failureOperation = $(byText("Ошибка! Банк отказал в проведении операции.")).parent().$("[class=\"notification__content\"]");
-    private SelenideElement wrongFormatError = $(byText("Неверный формат"));
-    private ElementsCollection wrongFormat4Error = $$(byText("Неверный формат"));
-    private SelenideElement cardExpirationDateError = $(byText("Неверно указан срок действия карты"));
-    private SelenideElement cardExpiredError = $(byText("Истёк срок действия карты"));
-    private SelenideElement requiredFieldError = $(byText("Поле обязательно для заполнения"));
-
-    private SelenideElement cancelField = $$("[class=\"icon-button__text\"]").first();
-    private SelenideElement continueButton = $$("button").find(exactText("Продолжить"));
+    private SelenideElement heading = $$("h3").find(exactText("Кредит по данным карты")); //+
+    private SelenideElement cardNumberField = $(byText("Номер карты")).parent().$("[class=\"input__control\"]"); //+
+    private SelenideElement monthField = $(byText("Месяц")).parent().$("[class=\"input__control\"]"); //+
+    private SelenideElement yearField = $(byText("Год")).parent().$("[class=\"input__control\"]"); //+
+    private SelenideElement cardHolderField = $(byText("Владелец")).parent().$("[class=\"input__control\"]"); //+
+    private SelenideElement cvvField = $(byText("CVC/CVV")).parent().$("[class=\"input__control\"]"); //+
+    private SelenideElement approvedOperation = $(byText("Операция одобрена Банком.")); //+
+    private SelenideElement failureOperation = $(byText("Ошибка! Банк отказал в проведении операции.")); //+
+    private SelenideElement wrongFormatError = $(byText("Неверный формат")); //+
+    private SelenideElement cardExpirationDateError = $(byText("Неверно указан срок действия карты")); //+
+    private SelenideElement cardExpiredError = $(byText("Истёк срок действия карты")); //+
+    private SelenideElement requiredFieldError = $(byText("Поле обязательно для заполнения")); //+
+    private SelenideElement continueButton = $$("button").find(exactText("Продолжить")); //+
 
     public CreditGate() {
         heading.shouldBe(visible);
@@ -43,29 +38,33 @@ public class CreditGate {
         continueButton.click();
     }
 
-    //ожидание элемента
+    //ожидание элемента "Операция одобрена Банком."
     public void waitNotificationApproved() {
         approvedOperation.shouldBe(visible, Duration.ofSeconds(15));
     }
 
-    public void waitNotificationFailure() {
-        failureOperation.shouldBe(visible, Duration.ofSeconds(20));
+    //ожидание элемента "Неверный формат"
+    public void errorWaitingInvalidFormat() {
+        wrongFormatError.shouldBe(visible, Duration.ofSeconds(5));
     }
 
-    public void waitNotificationWrongFormat() {
-        wrongFormatError.shouldBe(visible, Duration.ofSeconds(20));
+    //ожидание элемента "Поле обязательно для заполнения"
+    public void errorRequiredField() {
+        requiredFieldError.shouldBe(visible, Duration.ofSeconds(5));
     }
 
-    public void waitNotificationExpirationDateError() {
-        cardExpirationDateError.shouldBe(visible, Duration.ofSeconds(20));
+    //ожидание элемента "Неверно указан срок действия карты"
+    public void errorTheCardExpirationDateIsIncorrect() {
+        cardExpirationDateError.shouldBe(visible, Duration.ofSeconds(5));
     }
 
-    public void waitNotificationExpiredError() {
-        cardExpiredError.shouldBe(visible, Duration.ofSeconds(20));
+    //ожидание элемента "Истёк срок действия карты"
+    public void errorCardHasExpired() {
+        cardExpiredError.shouldBe(visible, Duration.ofSeconds(5));
     }
 
-    public void waitNotificationWrongFormat4Fields() {
-        wrongFormat4Error.shouldHave(size(4));
-        requiredFieldError.shouldBe(visible, Duration.ofSeconds(20));
+    //ожидание элемента "Ошибка! Банк отказал в проведении операции."
+    public void errorBankRefusal() {
+        failureOperation.shouldBe(visible, Duration.ofSeconds(15));
     }
 }
