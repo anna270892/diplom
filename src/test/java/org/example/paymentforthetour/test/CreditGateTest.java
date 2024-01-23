@@ -71,7 +71,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getEmptyCard();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -93,7 +93,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getEmptyCardNumberField();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -105,7 +105,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getNumberCard15Symbols();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -117,7 +117,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getEmptyMonthField();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -129,7 +129,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardWithThePastMonth();
         payment.inputData(declinedCard);
-        payment.errorCardHasExpired();
+        payment.getCardHasExpiredError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -141,7 +141,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardMonthOver00();
         payment.inputData(declinedCard);
-        payment.errorTheCardExpirationDateIsIncorrect();
+        payment.getCardExpirationDateError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -153,7 +153,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardMonth1Symbol();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -165,7 +165,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardMonthOver12();
         payment.inputData(declinedCard);
-        payment.errorTheCardExpirationDateIsIncorrect();
+        payment.getCardExpirationDateError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -177,7 +177,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getEmptyYearField();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -189,7 +189,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getOverdueYear();
         payment.inputData(declinedCard);
-        payment.errorCardHasExpired();
+        payment.getCardHasExpiredError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -201,7 +201,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardYearOverThisYearOn6();
         payment.inputData(declinedCard);
-        payment.errorTheCardExpirationDateIsIncorrect();
+        payment.getCardExpirationDateError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -213,7 +213,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardYear1Symbol();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -225,7 +225,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardYearOver00();
         payment.inputData(declinedCard);
-        payment.errorCardHasExpired();
+        payment.getCardHasExpiredError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -237,7 +237,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getEmptyCardOwnerField();
         payment.inputData(declinedCard);
-        payment.errorRequiredField();
+        payment.getRequiredFieldError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -249,7 +249,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardHolder1Word();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -261,7 +261,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardHolderRussianLetters();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -273,7 +273,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardHolderNumbers();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -285,7 +285,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getCardSpecialSymbols();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -297,7 +297,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getEmptyCVVField();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -309,7 +309,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getEmptyCVV000();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -321,7 +321,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getEmptyCVV2Symbol();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -333,7 +333,7 @@ public class CreditGateTest {
         CreditGate payment = startPage.goToCreditPage();
         MyCard declinedCard = DataHelper.getEmptyCVV1Symbol();
         payment.inputData(declinedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 }

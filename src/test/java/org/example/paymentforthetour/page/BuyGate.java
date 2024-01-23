@@ -37,32 +37,33 @@ public class BuyGate {
         continueButton.click();
     }
 
-    //ожидание элемента "Операция одобрена Банком."
+    //ожидание элемента "Операция одобрена Банком." +
     public void waitNotificationApproved() {
         approvedOperation.shouldBe(visible, Duration.ofSeconds(15));
     }
 
-    //ожидание элемента "Неверный формат"
-    public void errorWaitingInvalidFormat() {
-        wrongFormatError.shouldBe(visible, Duration.ofSeconds(5));
+    //элемент "Неверный формат" +
+    public SelenideElement getWaitingInvalidFormat() {
+        return wrongFormatError;
     }
 
-    //ожидание элемента "Поле обязательно для заполнения"
-    public void errorRequiredField() {
-        requiredFieldError.shouldBe(visible, Duration.ofSeconds(5));
+    //элемент "Поле обязательно для заполнения" +
+    public SelenideElement getRequiredFieldError() {
+        return requiredFieldError;
     }
 
-    //ожидание элемента "Неверно указан срок действия карты"
-    public void errorTheCardExpirationDateIsIncorrect() {
-        cardExpirationDateError.shouldBe(visible, Duration.ofSeconds(5));
+
+    //элемент "Неверно указан срок действия карты" +
+    public SelenideElement getCardExpirationDateError() {
+        return cardExpirationDateError;
     }
 
-    //ожидание элемента "Истёк срок действия карты"
-    public void errorCardHasExpired() {
-        cardExpiredError.shouldBe(visible, Duration.ofSeconds(5));
+    //элемент "Истёк срок действия карты" +
+    public SelenideElement getCardHasExpiredError() {
+        return cardExpiredError;
     }
 
-    //ожидание элемента "Ошибка! Банк отказал в проведении операции."
+    //ожидание элемента "Ошибка! Банк отказал в проведении операции." +
     public void errorBankRefusal() {
         failureOperation.shouldBe(visible, Duration.ofSeconds(15));
     }

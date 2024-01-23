@@ -70,7 +70,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCard();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -94,7 +94,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCardNumberField();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -106,7 +106,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getNumberCard15Symbols();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -118,7 +118,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyMonthField();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -130,7 +130,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardWithThePastMonth();
         payment.inputData(approvedCard);
-        payment.errorCardHasExpired();
+        payment.getCardHasExpiredError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -142,7 +142,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardMonthOver00();
         payment.inputData(approvedCard);
-        payment.errorTheCardExpirationDateIsIncorrect();
+        payment.getCardExpirationDateError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -154,7 +154,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardMonth1Symbol();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -166,7 +166,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardMonthOver12();
         payment.inputData(approvedCard);
-        payment.errorTheCardExpirationDateIsIncorrect();
+        payment.getCardExpirationDateError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -178,7 +178,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyYearField();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -190,7 +190,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getOverdueYear();
         payment.inputData(approvedCard);
-        payment.errorCardHasExpired();
+        payment.getCardHasExpiredError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -202,7 +202,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardYearOverThisYearOn6();
         payment.inputData(approvedCard);
-        payment.errorTheCardExpirationDateIsIncorrect();
+        payment.getCardExpirationDateError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -214,7 +214,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardYear1Symbol();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -226,7 +226,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardYearOver00();
         payment.inputData(approvedCard);
-        payment.errorCardHasExpired();
+        payment.getCardHasExpiredError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -238,7 +238,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCardOwnerField();
         payment.inputData(approvedCard);
-        payment.errorRequiredField();
+        payment.getRequiredFieldError();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -250,7 +250,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardHolder1Word();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -262,7 +262,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardHolderRussianLetters();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -274,7 +274,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardHolderNumbers();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -286,7 +286,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getCardSpecialSymbols();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -298,7 +298,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCVVField();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -310,7 +310,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCVV000();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -322,7 +322,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCVV2Symbol();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 
@@ -334,7 +334,7 @@ public class BuyGateTest {
         BuyGate payment = startPage.goToBuyPage();
         MyCard approvedCard = DataHelper.getEmptyCVV1Symbol();
         payment.inputData(approvedCard);
-        payment.errorWaitingInvalidFormat();
+        payment.getWaitingInvalidFormat();
         assertEquals("0", SqlHelper.getOrderCount());
     }
 }
