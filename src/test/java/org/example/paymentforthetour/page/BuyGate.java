@@ -44,11 +44,13 @@ public class BuyGate {
 
     //элемент "Неверный формат" +
     public void getWaitingInvalidFormat() {
-        wrongFormatError.shouldBe(visible);}
+        wrongFormatError.shouldBe(visible);
+    }
 
     //элемент "Поле обязательно для заполнения" +
     public void getRequiredFieldError() {
-        requiredFieldError.shouldBe(visible);}
+        requiredFieldError.shouldBe(visible);
+    }
 
 
     //элемент "Неверно указан срок действия карты" +

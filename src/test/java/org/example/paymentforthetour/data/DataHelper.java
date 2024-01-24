@@ -29,12 +29,11 @@ public class DataHelper {
         return new MyCard("4444444444444442", month, year, holder, cvv);
     }
 
-//генерация случайного месяца от 0 до 9
-    public static String getShiftedMonth(){
+    //генерация случайного месяца от 0 до 9
+    public static String getShiftedMonth() {
         int shift = (int) (Math.random() * 10);
         return LocalDate.now().plusMonths(shift).format(DateTimeFormatter.ofPattern("MM"));
     }
-
 
 
     //пустое заполнение формы
@@ -74,15 +73,13 @@ public class DataHelper {
     }
 
 
-
-
     //"Месяц" пустое
     public static MyCard getEmptyMonthField() {
         Faker faker = new Faker();
         String holder = faker.name().firstName() + " " + faker.name().lastName();
         String year = getShiftedYear(0);
         String cvv = faker.number().digits(3);
-        return new MyCard("4444444444444441", "",  year, holder, cvv);
+        return new MyCard("4444444444444441", "", year, holder, cvv);
     }
 
     //"Месяц" прошедший (на 1 месяц назад)
@@ -189,7 +186,7 @@ public class DataHelper {
         String month = getShiftedMonth();
         String year = getShiftedYear(0);
         String cvv = faker.number().digits(3);
-        return new MyCard("4444444444444441", month, year, "",  cvv);
+        return new MyCard("4444444444444441", month, year, "", cvv);
     }
 
     //"Владелец карты" одно слово
@@ -209,7 +206,7 @@ public class DataHelper {
         String month = getShiftedMonth();
         String year = getShiftedYear(0);
         String cvv = faker.number().digits(3);
-        return new MyCard("4444444444444441",  month, year, holder, cvv);
+        return new MyCard("4444444444444441", month, year, holder, cvv);
     }
 
     //"Владелец карты" цифры
@@ -219,7 +216,7 @@ public class DataHelper {
         String month = getShiftedMonth();
         String year = getShiftedYear(0);
         String cvv = faker.number().digits(3);
-        return new MyCard("4444444444444441",  month, year, holder, cvv);
+        return new MyCard("4444444444444441", month, year, holder, cvv);
     }
 
     //"Владелец карты" спецсимволы, кроме пробела и дефиса
@@ -230,7 +227,6 @@ public class DataHelper {
         String cvv = faker.number().digits(3);
         return new MyCard("4444444444444441", month, year, "*&$%", cvv);
     }
-
 
 
     //"CVV" пустое
