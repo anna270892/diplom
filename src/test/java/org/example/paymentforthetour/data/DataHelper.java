@@ -11,12 +11,22 @@ public class DataHelper {
 
     //валидная карта APPROVED
     public static MyCard getApprovedCard() {
-        return new MyCard("4444444444444441", "01", "24", "Anna Kochergina", "555");
+        Faker faker = new Faker();
+        String holder = faker.name().firstName() + " " + faker.name().lastName();
+        String month = getShiftedMonth();
+        String year = getShiftedYear(0);
+        String cvv = faker.number().digits(3);
+        return new MyCard("4444444444444441", month, year, holder, cvv);
     }
 
     //валидная карта DECLINED
     public static MyCard getDeclinedCard() {
-        return new MyCard("4444444444444442", "01", "24", "Anna Kochergina", "555");
+        Faker faker = new Faker();
+        String holder = faker.name().firstName() + " " + faker.name().lastName();
+        String month = getShiftedMonth();
+        String year = getShiftedYear(0);
+        String cvv = faker.number().digits(3);
+        return new MyCard("4444444444444442", month, year, holder, cvv);
     }
 
 //генерация случайного месяца от 0 до 9
@@ -80,7 +90,7 @@ public class DataHelper {
         Faker faker = new Faker();
         String holder = faker.name().firstName() + " " + faker.name().lastName();
         String month = String.valueOf(LocalDate.now().minusMonths(1).getMonthValue());
-        String year = getShiftedYear(0);
+        String year = getShiftedYearMinus(-1);
         String cvv = faker.number().digits(3);
         return new MyCard("4444444444444441", month, year, holder, cvv);
     }
@@ -114,9 +124,14 @@ public class DataHelper {
     }
 
 
-    //"Год" метод сдвига года
+    //"Год" метод сдвига года вперед
     public static String getShiftedYear(int yearCount) {
         return LocalDate.now().plusYears(yearCount).format(DateTimeFormatter.ofPattern("YY"));
+    }
+
+    //"Год" метод сдвига года назад
+    public static String getShiftedYearMinus(int yearCount) {
+        return LocalDate.now().minusYears(yearCount).format(DateTimeFormatter.ofPattern("YY"));
     }
 
     //"Год" пустое

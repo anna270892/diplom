@@ -44,23 +44,23 @@ public class CreditGate {
     }
 
     //элемент "Неверный формат" +
-    public SelenideElement getWaitingInvalidFormat() {
-        return wrongFormatError;
+    public void getWaitingInvalidFormat() {
+        wrongFormatError.shouldBe(visible);
     }
 
     //элемент "Поле обязательно для заполнения" +
-    public SelenideElement getRequiredFieldError() {
-        return requiredFieldError;
+    public void getRequiredFieldError() {
+        requiredFieldError.shouldBe(visible);
     }
 
     //элемент "Неверно указан срок действия карты" +
-    public SelenideElement getCardExpirationDateError() {
-        return cardExpirationDateError;
+    public void getCardExpirationDateError() {
+        cardExpirationDateError.shouldBe(visible);
     }
 
     //элемент "Истёк срок действия карты" +
-    public SelenideElement getCardHasExpiredError() {
-        return cardExpiredError;
+    public void getCardHasExpiredError() {
+        cardExpiredError.shouldBe(visible);
     }
 
     //ожидание элемента "Ошибка! Банк отказал в проведении операции." +

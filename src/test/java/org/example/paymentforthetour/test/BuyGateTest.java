@@ -123,7 +123,7 @@ public class BuyGateTest {
     }
 
 
-    //!невозможно сделать просроченный месяц в 24 году! 11.Оплата картой с просроченным месяцем (форма по кнопке "Купить")
+    // 11.Оплата картой с просроченным месяцем (форма по кнопке "Купить")
     @Test
     void cardWithThePastMonthField() {
         PaymentMethod startPage = open(url, PaymentMethod.class);
